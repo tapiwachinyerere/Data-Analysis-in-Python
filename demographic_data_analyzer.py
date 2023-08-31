@@ -22,7 +22,7 @@ def calculate_demographic_data(print_data=True):
     lower_education = len(df[df['salary'] == '>50K']) - round(round(df[df['salary'] == '>50K'].value_counts(['education']),2)['Bachelors'] +round(df[df['salary'] == '>50K'].value_counts(['education']),2)['Masters'] + round(df[df['salary'] == '>50K'].value_counts(['education']),2)['Doctorate'],1)
 
     # percentage with salary >50K
-    higher_education_rich = round((df[df['salary'] == '>50K'].value_counts(['education'])/len(df[df['salary'] == '>50K'])*100)['Bachelors'] + (df[df['salary'] == '>50K'].value_counts(['education'])/len(df[df['salary'] == '>50K'])*100)['Masters'] + (df[df['salary'] == '>50K'].value_counts(['education'])/len(df[df['salary'] == '>50K'])*100)['Doctorate'],2)
+    higher_education_rich = round((df[(df['education'] == 'Bachelors') | (df['education'] == 'Masters') | (df['education'] == 'Doctorate')].value_counts(['salary'])['>50K']/len(df[(df['education'] == 'Bachelors') | (df['education'] == 'Masters') | (df['education'] == 'Doctorate')])*100),1)
     lower_education_rich = 100-higher_education_rich
 
     # What is the minimum number of hours a person works per week (hours-per-week feature)?
